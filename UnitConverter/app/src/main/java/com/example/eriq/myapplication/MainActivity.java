@@ -19,23 +19,20 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements TextWatcher {
     private EditText userInput;
     private TextView convertedText;
-    private Spinner spinner1;
-    private Spinner spinner2;
     private String spValue1;
     private String spValue2;
-    private double amountValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        userInput = (EditText) findViewById(R.id.userInput);
-        convertedText = (TextView) findViewById(R.id.convertedText);
-        spinner1 = (Spinner) findViewById(R.id.spinner1);
-        spinner2 = (Spinner) findViewById(R.id.spinner2);
+        userInput = findViewById(R.id.userInput);
+        convertedText = findViewById(R.id.convertedText);
+        Spinner spinner1 = findViewById(R.id.spinner1);
+        Spinner spinner2 = findViewById(R.id.spinner2);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.units, android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -46,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                //This method checks the position of the first spinner
+                //Assigns a value to a variable
+                //Variable is used for decision making in onTextChanged method
                 String text = adapterView.getItemAtPosition(i).toString();
                 Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT).show();
                 if(i == 0){
@@ -70,6 +70,9 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                //This method checks the position of the second spinner
+                //Assigns a value to a variable
+                //Variable is used for decision making in onTextChanged method
                 String text = adapterView.getItemAtPosition(i).toString();
                 Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT).show();
                 if(i == 0){
@@ -125,8 +128,12 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
 
     @Override
     public void onTextChanged(CharSequence text, int i, int i1, int i2) {
+        //This method takes variables that were determined in the two onItemSelected methods for the two spinners
+        //Checks if the text length is greater than 0 and then compares spinner values
+        //Performs calculation based on spinner values and assigns result to the convertedText TextView variable
         if(text.length() > 0){
             double amount = Double.parseDouble(text.toString());
+            double amountValue;
             if(spValue1.equals("meter") && spValue2.equals("meter")){
                 amountValue = amount;
                 convertedText.setText(String.valueOf(amountValue));
