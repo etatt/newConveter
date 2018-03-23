@@ -14,7 +14,8 @@
 
         android:layout_height="wrap_content"
         android:layout_columnWeight="0"
-        android:text="From:" />
+        android:text="From:"
+        android:textSize="18sp" />
 
     <Spinner
         android:id="@+id/spinner1"
@@ -24,18 +25,20 @@
         android:id="@+id/userInput"
         android:layout_width="196dp"
         android:layout_columnWeight="0"
-        android:inputType="number" />
+        android:inputType="numberDecimal" />
 
     <TextView
         android:layout_columnWeight="0"
-        android:text="To:" />
+        android:text="To:"
+        android:textSize="18sp" />
 
     <Spinner android:id="@+id/spinner2"></Spinner>
 
     <TextView
         android:id="@+id/convertedText"
         android:layout_columnWeight="0"
-        android:text="......................" />
+        android:text="......................"
+        android:textSize="18sp" />
 
 
 </GridLayout>

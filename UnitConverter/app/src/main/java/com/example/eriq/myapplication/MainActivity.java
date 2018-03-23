@@ -1,14 +1,14 @@
 package com.example.eriq.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -52,7 +52,13 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
                     spValue1 = "meter";
                 } else if(i == 1){
                     spValue1 = "centimeter";
+                } else if(i == 2){
+                    spValue1 = "inch";
+                } else if(i == 3){
+                    spValue1 = "foot";
                 }
+                convertedText.setText("......................");
+                userInput.setText("");
             }
 
             @Override
@@ -70,7 +76,13 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
                     spValue2 = "meter";
                 } else if(i == 1){
                     spValue2 = "centimeter";
+                } else if(i == 2){
+                spValue2 = "inch";
+                } else if(i == 3){
+                    spValue2 = "foot";
                 }
+                convertedText.setText("......................");
+                userInput.setText("");
             }
 
             @Override
@@ -99,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(getApplicationContext(), Main2Activity.class));
             return true;
         }
 
@@ -120,11 +133,67 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
             } else
             if(spValue1.equals("meter") && spValue2.equals("centimeter")) {
                 amountValue = amount * 100;
-                convertedText.setText(String.valueOf(amountValue));}
+                convertedText.setText(String.valueOf(amountValue));
+            } else
+            if(spValue1.equals("meter") && spValue2.equals("inch")) {
+                amountValue = amount * 39.37;
+                convertedText.setText(String.valueOf(amountValue));
+            } else
+            if(spValue1.equals("meter") && spValue2.equals("foot")) {
+                amountValue = amount * 3.28084;
+                convertedText.setText(String.valueOf(amountValue));
+            } else
+            if(spValue1.equals("centimeter") && spValue2.equals("meter")) {
+                amountValue = amount / 100;
+                convertedText.setText(String.valueOf(amountValue));
+            } else
+            if(spValue1.equals("centimeter") && spValue2.equals("centimeter")) {
+                amountValue = amount;
+                convertedText.setText(String.valueOf(amountValue));
+            } else
+            if(spValue1.equals("centimeter") && spValue2.equals("inch")) {
+                amountValue = amount / 2.54;
+                convertedText.setText(String.valueOf(amountValue));
+            } else
+            if(spValue1.equals("centimeter") && spValue2.equals("foot")) {
+                amountValue = amount / 30.48;
+                convertedText.setText(String.valueOf(amountValue));
+            } else
+            if(spValue1.equals("inch") && spValue2.equals("meter")) {
+                amountValue = amount / 39.37;
+                convertedText.setText(String.valueOf(amountValue));
+            } else
+            if(spValue1.equals("inch") && spValue2.equals("centimeter")) {
+                amountValue = amount * 2.54;
+                convertedText.setText(String.valueOf(amountValue));
+            } else
+            if(spValue1.equals("inch") && spValue2.equals("inch")) {
+                amountValue = amount;
+                convertedText.setText(String.valueOf(amountValue));
+            } else
+            if(spValue1.equals("inch") && spValue2.equals("foot")) {
+                amountValue = amount / 12;
+                convertedText.setText(String.valueOf(amountValue));
+            } else
+            if(spValue1.equals("foot") && spValue2.equals("meter")) {
+                amountValue = amount / 3.28084;
+                convertedText.setText(String.valueOf(amountValue));
+            } else
+            if(spValue1.equals("foot") && spValue2.equals("centimeter")) {
+                amountValue = amount * 30.48;
+                convertedText.setText(String.valueOf(amountValue));
+            } else
+            if(spValue1.equals("foot") && spValue2.equals("inch")) {
+                amountValue = amount * 12;
+                convertedText.setText(String.valueOf(amountValue));
+            } else
+            if(spValue1.equals("foot") && spValue2.equals("foot")) {
+                amountValue = amount;
+                convertedText.setText(String.valueOf(amountValue));
+            }
         } else {
             convertedText.setText("......................");
         }
-
     }
 
     @Override
